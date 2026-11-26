@@ -1,0 +1,59 @@
+name: Feature Request
+description: Propose a new feature, enhancement, or architectural improvement for AI-BRAIN
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for suggesting a feature for AI-BRAIN.
+        Please note that AI-BRAIN maintains a strict **zero external dependencies** law (Python Standard Library only). Proposed core features must adhere to this rule.
+  - type: textarea
+    id: problem-statement
+    attributes:
+      label: Problem Statement & Use Case
+      description: What problem or limitation are you trying to solve? Please describe the workflow or user story.
+      placeholder: As an AI coding assistant user, I need...
+    validations:
+      required: true
+  - type: textarea
+    id: proposed-solution
+    attributes:
+      label: Proposed Solution
+      description: A clear and concise description of the feature you want implemented.
+      placeholder: Outline your proposed solution...
+    validations:
+      required: true
+  - type: textarea
+    id: zero-dependency-alignment
+    attributes:
+      label: Alignment with Zero-Dependency Core
+      description: Explain how this feature can be built using strictly the Python Standard Library (no pip dependencies).
+      placeholder: Describe the standard library modules and implementation strategy...
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives-considered
+    attributes:
+      label: Alternatives Considered
+      description: Describe any alternative approaches or workarounds you considered.
+      placeholder: Alternatives explored...
+    validations:
+      required: false
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Any other context, references, or mockups.
+      placeholder: Additional context...
+    validations:
+      required: false
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Pre-Submission Checklist
+      options:
+        - label: I confirmed that this feature proposal adheres to the zero external dependencies law.
+          required: true
+        - label: I searched existing issues and confirmed this feature has not been previously proposed.
+          required: true

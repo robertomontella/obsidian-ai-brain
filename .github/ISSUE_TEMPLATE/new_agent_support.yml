@@ -1,0 +1,75 @@
+name: New Agent Support
+description: Request or propose support for a new AI coding assistant, IDE, or CLI tool
+title: "[Agent]: Support for "
+labels: ["agent-support", "enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        AI-BRAIN aims to provide universal persistent memory across all coding agents.
+        Use this template to propose adding configuration and rules for a new coding assistant or IDE.
+  - type: input
+    id: agent-name
+    attributes:
+      label: Agent / IDE Name
+      description: What is the name of the assistant or editor?
+      placeholder: "e.g., Windsurf, Continue, Aider, Zed, Cline"
+    validations:
+      required: true
+  - type: input
+    id: agent-url
+    attributes:
+      label: Official Website / Documentation URL
+      description: Link to official documentation or repository.
+      placeholder: "https://..."
+    validations:
+      required: true
+  - type: dropdown
+    id: mcp-protocol-support
+    attributes:
+      label: MCP Protocol Support
+      description: How does this tool integrate with external tools or context?
+      options:
+        - Native Model Context Protocol (MCP) STDIO
+        - Model Context Protocol (MCP) SSE / HTTP
+        - Custom Plugin / Extension API
+        - Workspace Instruction / Prompt Files (e.g. .rules, CONVENTIONS.md)
+        - CLI Tool / Bridge Only
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: mcp-config-location
+    attributes:
+      label: Configuration File Location & Schema
+      description: Where does the agent store its MCP or tool configuration, and in what format?
+      placeholder: |
+        File location: ~/.config/agent/mcp_config.json
+        Format: JSON / YAML
+    validations:
+      required: true
+  - type: input
+    id: agent-rule-file
+    attributes:
+      label: Workspace Rule / Instruction File
+      description: What file name does the agent read from project roots? (e.g., .cursorrules, .windsurfrules, CONVENTIONS.md, CLAUDE.md)
+      placeholder: "e.g., .windsurfrules"
+    validations:
+      required: true
+  - type: textarea
+    id: implementation-proposal
+    attributes:
+      label: Proposed Implementation Details
+      description: How should the rule file and MCP snippet be structured for this agent?
+      placeholder: Outline proposed rule structure and setup.py integration...
+    validations:
+      required: false
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Pre-Submission Checklist
+      options:
+        - label: I verified that the proposed configuration contains zero personal file paths or usernames.
+          required: true
+        - label: I confirmed that this agent is publicly available or has accessible documentation.
+          required: true

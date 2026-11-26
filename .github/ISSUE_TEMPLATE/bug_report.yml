@@ -1,0 +1,105 @@
+name: Bug Report
+description: Report an issue or unexpected behavior in AI-BRAIN
+title: "[Bug]: "
+labels: ["bug", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for reporting an issue to AI-BRAIN.
+        Please provide the details requested below. Prior to submitting, please ensure all personal paths, usernames, and secret credentials have been removed.
+  - type: dropdown
+    id: os
+    attributes:
+      label: Operating System
+      description: What operating system are you running?
+      options:
+        - macOS (Apple Silicon - M1/M2/M3/M4)
+        - macOS (Intel)
+        - Linux (Ubuntu/Debian)
+        - Linux (Fedora/RHEL/Arch)
+        - Windows (WSL2)
+        - Windows (Native PowerShell/CMD)
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: python-version
+    attributes:
+      label: Python Version
+      description: Exact Python version (run `python3 --version`). Must be 3.9+.
+      placeholder: "e.g., Python 3.11.4"
+    validations:
+      required: true
+  - type: dropdown
+    id: mcp-client
+    attributes:
+      label: MCP Client / Assistant
+      description: Which AI coding assistant or client is connected to AI-BRAIN?
+      options:
+        - Claude Desktop
+        - Claude Code CLI
+        - Cursor IDE
+        - Google Antigravity
+        - Gemini CLI
+        - Windsurf
+        - Continue.dev
+        - Aider
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Bug Description
+      description: A clear and concise description of the bug.
+      placeholder: Describe the problem...
+    validations:
+      required: true
+  - type: textarea
+    id: steps-to-reproduce
+    attributes:
+      label: Steps to Reproduce
+      description: Step-by-step instructions to reproduce the problem.
+      placeholder: |
+        1. Run 'python3 setup.py'
+        2. Select mode '...'
+        3. Encounter error...
+    validations:
+      required: true
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Expected Behavior
+      description: What you expected to happen.
+      placeholder: Expected outcome...
+    validations:
+      required: true
+  - type: textarea
+    id: actual-behavior
+    attributes:
+      label: Actual Behavior
+      description: What actually occurred during execution.
+      placeholder: Actual outcome...
+    validations:
+      required: true
+  - type: textarea
+    id: stderr-logs
+    attributes:
+      label: Stderr Logs / Stack Trace
+      description: Paste terminal output or server stderr logs here. Please redact secrets and personal paths!
+      placeholder: Paste stderr output or tracebacks here...
+      render: shell
+    validations:
+      required: false
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Pre-Submission Checklist
+      options:
+        - label: I confirmed that no personal paths or secret credentials (API keys, tokens, passwords) are present in this report.
+          required: true
+        - label: I verified that the issue reproduces with Python Standard Library components.
+          required: true
+        - label: I searched existing GitHub issues and confirmed this is not a duplicate.
+          required: true

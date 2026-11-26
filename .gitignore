@@ -1,0 +1,50 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.py[cod]
+*$py.class
+
+# SQLite databases, journals, and WAL files
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm
+*.db
+*.db-wal
+*.db-shm
+
+# Concurrency lock files
+*.lock
+
+# Temporary and log files
+*.log
+*.tmp
+*.temp
+temp/
+tmp/
+
+# Operating System files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Testing and coverage caches
+.cache/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Editor and IDE directories
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Local agent configs & environment overrides
+.env
+.env.local

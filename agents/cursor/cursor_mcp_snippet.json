@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "ai-brain": {
+      "command": "{{PYTHON_PATH}}",
+      "args": [
+        "{{SERVER_PATH}}",
+        "--vault",
+        "{{VAULT_PATH}}"
+      ],
+      "env": {
+        "BRAIN_VAULT_PATH": "{{VAULT_PATH}}"
+      }
+    }
+  }
+}

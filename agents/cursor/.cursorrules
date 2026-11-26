@@ -1,0 +1,107 @@
+# Cursor IDE — AI-BRAIN Rules & Memory Integration Protocol
+
+> **Target:** Cursor IDE (Composer, Agent Mode, Inline Edits & Chat)
+> **MCP Server:** `ai-brain` (Model Context Protocol STDIO)
+> **Vault Root:** Configured in `.cursor/mcp.json` via `BRAIN_VAULT_PATH` or `--vault`
+
+---
+
+## 1. Silent Auto-Retrieval Protocol (Always On)
+
+At the onset of any interaction, feature request, or refactoring task:
+- You **MUST** query long-term memory via MCP tool `brain_search_memory` before generating code or modifying files.
+- Retrieve domain models, architectural patterns, conventions, and previous bugfixes related to the files or concepts in scope.
+- **Silent Background Execution:** Perform the search silently without conversational narration (no "Querying AI-BRAIN...", no verbose preambles).
+- Transparently apply recalled architectural rules and past solutions directly to your proposals and code generation. If no relevant memory is returned, continue without disruption.
+
+```json
+// Tool Call Signature:
+{
+  "name": "brain_search_memory",
+  "arguments": {
+    "query": "<topic / file context / domain concept>",
+    "limit": 5
+  }
+}
+```
+
+---
+
+## 2. Autonomous Auto-Capture Protocol (Zero User Friction)
+
+Whenever you:
+1. Make or adopt an architectural or technical decision (e.g., state management, API schema, database design).
+2. Resolve a non-trivial bug, edge case, or tricky test failure with a reusable fix.
+3. Establish or update codebase conventions (e.g., linter preferences, testing patterns, error handling conventions).
+4. Complete a multi-file refactoring or new component implementation.
+
+You **MUST** autonomously capture this knowledge into the vault:
+- Call `brain_add_memory` immediately without user friction.
+- **Never prompt for confirmation:** Do not ask "Shall I save this decision to memory?". Record it directly.
+- **Deduplication & Superseding:** If the new memory modifies or replaces a prior decision, pass the prior note's title or ID in `supersedes` so the system marks the old record superseded and registers the active one.
+
+```json
+// Tool Call Signature:
+{
+  "name": "brain_add_memory",
+  "arguments": {
+    "title": "Authentication Token Refresh Protocol",
+    "content": "Rationale, sequence, and code conventions for token refresh handling.",
+    "memory_type": "memory/semantic",
+    "tags": ["auth", "security", "jwt"],
+    "priority": "Alta",
+    "project": "CurrentProject"
+  }
+}
+```
+
+---
+
+## 3. Zero-Leak Security Policy (Strict Sanitization)
+
+Protect sensitive data and credentials with zero tolerance for leaks:
+- **Zero-Leak Guarantee:** NEVER record API keys, tokens, passwords, private keys, or credentials into memory.
+- Prohibited patterns include:
+  - AI API keys (`sk-...`)
+  - GitHub Personal Access Tokens (`ghp_...`, `gho_...`)
+  - Authorization headers (`Bearer ...`)
+  - Secrets, database passwords, or private environment variables
+- Always redact sensitive values prior to calling `brain_add_memory`. Note that the MCP server applies an automated regex sanitizer before persisting any entry.
+
+---
+
+## 4. Crew Handoff Protocol
+
+Use `brain_log_handoff` to record context when transitioning work to another agent or session. This tool writes structured handoff entries to `crew_log.md` with agent identity, activity summary, file references, and open items.
+
+For multi-agent workflows with continuity:
+- Use `brain_log_handoff` to record context when transitioning work to another agent or session. This tool writes structured handoff entries to `crew_log.md` with agent identity, activity summary, file references, and open items.
+- Use `brain_read_crew_log` to retrieve recent handoff history for context continuity. The crew log preserves chronological context across agent boundaries.
+- Use `brain_archive_memories` to explicitly move cold or completed notes to `40_Archive/` with proper metadata (status: archived, archived_at timestamp).
+
+---
+
+## 5. Vault Structure Guidance (PARA + 4 Cognitive Layers)
+
+The AI-BRAIN vault organizes project knowledge using the PARA structure supplemented by 4 cognitive layers:
+
+### PARA Structure
+- `00_Inbox`: Unprocessed ideas, draft notes, quick snippets, and transitory items.
+- `10_Projects`: Active initiatives with defined milestones, tasks, and deadlines.
+- `20_Areas`: Ongoing domains of responsibility (e.g., `Backend Architecture`, `Frontend Standards`, `Infrastructure`).
+- `30_Resources`: Durable references, documentation, style guides, and external specs (e.g., `Coding Guidelines`).
+- `40_Archive`: Inactive projects, obsolete specs, and completed initiatives preserved for history.
+
+### 4 Cognitive Memory Layers (`50_Memory/`)
+All agent memories are categorized under `50_Memory/`:
+- `50_Memory/Episodic`: Chronological records of decisions, post-mortems, and sprint logs (`YYYY-MM-DD <Title>.md`). (`memory_type: "memory/episodic"`).
+- `50_Memory/Semantic`: Core concepts, architectural definitions, domain entities, and data models. (`memory_type: "memory/semantic"`).
+- `50_Memory/Procedural`: Step-by-step guides, runbooks, SOPs, and deployment or testing checklists. (`memory_type: "memory/procedural"`).
+- `50_Memory/Working`: Current sprint status, active task list, scratchpads, and immediate context. (`memory_type: "memory/working"`).
+
+---
+
+## 6. Cursor-Specific Guidelines
+
+- **Composer Precision:** When working across multiple files in Composer, retrieve relevant memory before editing and capture unified decisions after the edit is verified.
+- **Clean Diff Quality:** Focus changes strictly on requested components without introducing unrelated formatting shifts.

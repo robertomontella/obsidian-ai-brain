@@ -1,0 +1,39 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|resume|clear|compact",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3",
+            "args": [
+              "tools/sync_db.py",
+              "--vault",
+              ".",
+              "--incremental"
+            ],
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3",
+            "args": [
+              "tools/sync_db.py",
+              "--vault",
+              ".",
+              "--incremental"
+            ],
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  }
+}

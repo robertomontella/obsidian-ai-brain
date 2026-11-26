@@ -1,0 +1,15 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "obsidian-ai-brain"
+version = "0.1.0"
+description = "Local-first, zero-dependency Markdown memory vault for MCP coding agents (Claude, Cursor, Antigravity, Gemini)."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+dependencies = []
+
+[project.scripts]
+ai-brain-setup = "setup:main"
