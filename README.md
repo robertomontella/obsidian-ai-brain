@@ -30,12 +30,12 @@ Paste one command in your terminal. It creates your local vault, initializes SQL
 
 **Option A: Zero-clone with `uvx` (60 seconds)**
 ```bash
-uvx --from git+https://github.com/ai-brain-oss/obsidian-ai-brain ai-brain-setup --mode fresh --dest ~/AI-Brain --agents all --non-interactive
+uvx --from git+https://github.com/robertomontella/obsidian-ai-brain ai-brain-setup --mode fresh --dest ~/AI-Brain --agents all --non-interactive
 ```
 
 **Option B: Interactive wizard after cloning**
 ```bash
-git clone https://github.com/ai-brain-oss/obsidian-ai-brain.git && cd obsidian-ai-brain && python3 setup.py
+git clone https://github.com/robertomontella/obsidian-ai-brain.git && cd obsidian-ai-brain && python3 setup.py
 ```
 
 > Already have an Obsidian vault? Run with `--mode index --vault /path/to/your-vault --writable-inbox AI-Memory` to index your existing notes in read-only mode while keeping new AI memories isolated in `AI-Memory/`.

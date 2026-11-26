@@ -36,7 +36,7 @@ AI-BRAIN practices strict Test-Driven Development (TDD).
 ### Setup Steps
 ```bash
 # 1. Clone the repository
-git clone https://github.com/ai-brain-oss/obsidian-ai-brain.git
+git clone https://github.com/robertomontella/obsidian-ai-brain.git
 cd obsidian-ai-brain
 
 # 2. Run the full test suite
